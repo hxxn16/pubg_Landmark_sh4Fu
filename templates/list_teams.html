@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teams and Maps</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            padding-top: 20px;
+            background-color: #f8f9fa;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .team-card {
+            margin-bottom: 20px;
+            background-color: #fff;
+            border: 1px solid rgba(0,0,0,.125);
+            border-radius: .25rem;
+            box-shadow: 0 0.5rem 1rem rgba(0,0,0,.15);
+        }
+        .card-header {
+            background-color: #007bff;
+            color: #fff;
+            border-bottom: 1px solid rgba(0,0,0,.125);
+            border-radius: .25rem .25rem 0 0;
+            padding: 1rem 1.25rem;
+        }
+        .card-body {
+            padding: 1rem;
+        }
+        .map-list {
+            padding-left: 20px;
+        }
+        .list-group-item {
+            background-color: #f8f9fa;
+            border: none;
+        }
+        h1, h2, h3 {
+            color: #343a40;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-center mb-4">Teams and Maps</h1>
+        
+        <!-- Back to League Selection Button -->
+        <a href="/select_league" class="btn btn-secondary mb-3">Back to League Selection</a>
+        
+        {% for league, league_teams in teams.items() %}
+            <h2 class="mb-3">{{ league }}</h2>
+            <div class="row">
+                {% for team, team_data in league_teams.items() %}
+                    <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                        <div class="card team-card">
+                            <div class="card-header">
+                                <h5 class="mb-0">{{ team }}</h5>
+                            </div>
+                            <div class="card-body">
+                                <h6 class="card-subtitle mb-2 text-muted">Maps:</h6>
+                                <ul class="list-group map-list">
+                                    {% for map_name, location_name in team_data['maps'].items() %}
+                                        <li class="list-group-item">
+                                            {{ map_name }}: {{ location_name }}
+                                        </li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        {% endfor %}
+        
+    </div>
+    
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

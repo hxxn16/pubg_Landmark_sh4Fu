@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generated Maps</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            padding-top: 50px;
+        }
+        .container {
+            max-width: 800px;
+        }
+        .map-image {
+            margin-bottom: 30px;
+        }
+        .map-title {
+            margin-bottom: 10px;
+        }
+        .download-button {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-center">Generated Maps</h1>
+        {% for image_path in image_paths %}
+            <div class="map-image text-center">
+                <h2 class="map-title">{{ image_path.split('_')[2] }}</h2>
+                <img src="{{ image_path }}" class="img-fluid" alt="Map">
+                <div class="download-button">
+                    <a href="{{ image_path }}" class="btn btn-primary" download>Download This Map</a>
+                </div>
+            </div>
+        {% endfor %}
+        <div class="text-center">
+            <a href="/" class="btn btn-secondary">Go Back</a>
+        </div>
+    </div>
+</body>
+</html>
